@@ -1,0 +1,185 @@
+:root {
+  --main-bg: #e4eef7;
+  --body: #e4eef7;
+  --wing: #8b959e;
+  --tail: #414c59;
+  --legs: #c691b2;
+  --beak-light: #d5ccb3;
+  --beak-dark: #d0ab72;
+  --gradient-top: #a5cae5;
+  --gradient-middle: #cce2f0;
+  --gradient-bottom: #23343e;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  height: 1px;
+  color: #ffffff;
+  background-color: var(--main-bg);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 72vmin;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: #a5cae5;
+  background: linear-gradient(to bottom, var(--gradient-top) 45%, var(--gradient-middle) 45% 78%, var(--gradient-bottom) 78%);
+  box-shadow: 2vmin 2vmin 5vmin 0 rgba(34, 51, 62, .5);
+}
+
+.bird {
+  width: 44vmin;
+  height: 44vmin;
+  margin-left: 19vmin;
+}
+
+.bird__head {
+  position: relative;
+  width: 8vmin;
+  height: 20vmin;
+  margin-left: 3vmin;
+  padding-top: 1.4vmin;
+  background-color: var(--body);
+  background-clip: content-box;
+}
+
+.bird__head::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 0;
+  border-bottom: 1.5vmin solid var(--body);
+  border-left: 4vmin solid transparent;
+  border-right: 4vmin solid transparent;
+}
+
+.bird__beak {
+  position: relative;
+  height: 2.3vmin;
+  margin-top: 3vmin;
+  margin-left: -1.5vmin;
+  margin-right: -2.3vmin;
+}
+
+.bird__beak-state {
+  position: absolute;
+  top: 0;
+  width: 3vmin;
+  height: 100%;
+  background-color: var(--beak-dark);
+  opacity: 0;
+  animation: beak-state 6s steps(1) infinite;
+}
+
+.bird__beak-state--left {
+  left: 0;
+  width: 4.5vmin;
+  height: 1.8vmin;
+  clip-path: polygon(0 100%, 38% 0%, 68% 0, 85% 35%, 100% 35%, 75% 100%);
+  background: linear-gradient(to right, var(--beak-light) 45%, var(--beak-dark) 45%);
+  opacity: 1;
+}
+
+.bird__beak-state--middle {
+  position: relative;
+  left: 47%;
+  transform: translateX(-50%);
+  width: 3vmin;
+  clip-path: polygon(0 30%, 25% 30%, 50% 0, 75% 30%, 100% 30%, 50% 100%);
+  animation-delay: 2s;
+}
+
+.bird__beak-state--middle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  display: block;
+  width: 1.2vmin;
+  height: 1.2vmin;
+  background-color: var(--beak-light);
+}
+
+.bird__beak-state--right {
+  right: 0;
+  width: 4.5vmin;
+  height: 1.7vmin;
+  clip-path: polygon(0 35%, 35% 35%, 35% 0, 75% 0, 100% 100%, 20% 100%);
+  background: linear-gradient(to left, var(--beak-light) 35%, var(--beak-dark) 35%);
+  animation-delay: 4s;
+}
+
+.bird__body {
+  position: relative;
+  width: 43vmin;
+  height: 27vmin;
+  margin-top: -12vmin;
+  background-color: var(--body);
+  clip-path: polygon(0% 58%, 15% 0, 23% 0, 75% 82%, 100% 100%, 28% 100%);
+  background: linear-gradient(to left, var(--tail) 25%, var(--body) 25%);
+}
+
+.bird__wing {
+  position: absolute;
+  right: 16.5vmin;
+  bottom: -3vmin;
+  width: 13.5vmin;
+  height: 22.5vmin;
+  background-color: var(--wing);
+  transform: rotate(-45deg);
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 60% 100%, 0 65%);
+}
+
+.bird__legs {
+  width: 4.5vmin;
+  height: 7.2vmin;
+  margin-left: 13.5vmin;
+  border-left: 1.2vmin solid var(--legs);
+  border-right: 1.2vmin solid var(--legs);
+}
+
+@keyframes beak-state {
+  0% {
+    opacity: 1;
+  }
+
+  33.33% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
